@@ -1,11 +1,15 @@
+import { useContext } from 'react';
+import { ShopContext } from '../context';
+
 export const GootsItem = ({
     mainId,
     displayName,
     displayDescription,
     price: { finalPrice },
     displayAssets,
-    addToBasket = Function.prototype,
 }) => {
+    const { addToBasket } = useContext(ShopContext);
+
     return (
         <div className="card">
             <div className="card-image">

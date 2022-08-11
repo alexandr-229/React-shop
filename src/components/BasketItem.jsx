@@ -1,22 +1,20 @@
-export const BasketItem = ({
-    displayName,
-    finalPrice,
-    mainId,
-    quantity,
-    removeFromBasket = Function.prototype,
-    changeOrder = Function.prototype,
-}) => {
+import { useContext } from 'react';
+import { ShopContext } from '../context';
+
+export const BasketItem = ({ displayName, finalPrice, mainId, quantity }) => {
+    const { removeFromBasket, incrementQuantity, decrementQuantity } =
+        useContext(ShopContext);
     return (
         <li className="collection-item">
             {displayName} * {quantity} = {finalPrice * quantity}$
             <i
-                onClick={() => changeOrder(mainId, 'decrement')}
+                onClick={() => decrementQuantity(mainId)}
                 className="material-icons basket-quantity"
             >
                 remove
             </i>
             <i
-                onClick={() => changeOrder(mainId, 'increment')}
+                onClick={() => incrementQuantity(mainId)}
                 className="material-icons basket-quantity"
             >
                 add
